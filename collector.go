@@ -67,6 +67,9 @@ func generateTemplates(cfg *config.Settings) {
 				})
 			}
 			for s := range metric.ExtendedStatistics {
+				zname := toSnakeCase(metric.Namespace)
+				tname := toSnakeCase(metric.Name)
+				fmt.Println(zname,tname)
 				template.Metrics = append(template.Metrics, cwMetric{
 					Desc: prometheus.NewDesc(
 						safeName(toSnakeCase(metric.Namespace)+"_"+toSnakeCase(metric.Name)+"_"+toSnakeCase(metric.ExtendedStatistics[s])),
